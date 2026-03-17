@@ -116,7 +116,7 @@ export default function Pomodoro() {
     return (
       <button 
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 text-white \${
+        className={`fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 text-white ${
           isWork ? 'bg-indigo-600 hover:bg-indigo-500 shadow-indigo-900/50' : 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/50'
         }`}
       >
@@ -127,7 +127,7 @@ export default function Pomodoro() {
 
   // Açık (Maximize) Görünüm
   return (
-    <div className={`fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 w-72 md:w-80 bg-slate-900 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 border \${
+    <div className={`fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 w-72 md:w-80 bg-slate-900 rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 border ${
       isWork ? 'border-indigo-500/30' : 'border-emerald-500/30'
     }`}>
       {/* Header */}
@@ -139,7 +139,7 @@ export default function Pomodoro() {
         <div className="flex items-center gap-1">
           <button 
             onClick={() => setIsEditing(!isEditing)}
-            className={`p-1.5 rounded-lg transition-colors \${isEditing ? 'bg-slate-800 text-slate-200' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'}`}
+            className={`p-1.5 rounded-lg transition-colors ${isEditing ? 'bg-slate-800 text-slate-200' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'}`}
             title="Süre Ayarları"
           >
             <Settings size={16} />
@@ -196,7 +196,7 @@ export default function Pomodoro() {
             <div className="flex p-1 bg-slate-950/80 rounded-xl mb-6 border border-slate-800">
               <button
                 onClick={() => handleTabChange('work')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium rounded-lg transition-all duration-200 \${
+                className={`flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                   isWork ? 'bg-indigo-500/20 text-indigo-400 shadow-sm border border-indigo-500/20' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900 border border-transparent'
                 }`}
               >
@@ -205,7 +205,7 @@ export default function Pomodoro() {
               </button>
               <button
                 onClick={() => handleTabChange('break')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium rounded-lg transition-all duration-200 \${
+                className={`flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                   !isWork ? 'bg-emerald-500/20 text-emerald-400 shadow-sm border border-emerald-500/20' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900 border border-transparent'
                 }`}
               >
@@ -216,7 +216,7 @@ export default function Pomodoro() {
 
             {/* Timer Display */}
             <div className="text-center mb-7">
-              <div className={`text-5xl font-bold tracking-tight font-mono mb-2 transition-colors duration-300 \${isWork ? 'text-indigo-100' : 'text-emerald-100'}`}>
+              <div className={`text-5xl font-bold tracking-tight font-mono mb-2 transition-colors duration-300 ${isWork ? 'text-indigo-100' : 'text-emerald-100'}`}>
                 {formatTime(timeLeft)}
               </div>
               <div className="text-xs font-semibold text-slate-500 uppercase tracking-widest">
@@ -247,7 +247,7 @@ export default function Pomodoro() {
                 
                 <button 
                   onClick={toggleTimer}
-                  className={`flex items-center justify-center w-14 h-14 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 text-white \${
+                  className={`flex items-center justify-center w-14 h-14 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 text-white ${
                     isWork 
                       ? 'bg-indigo-600 hover:bg-indigo-500 shadow-indigo-900/40' 
                       : 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/40'

@@ -18,7 +18,7 @@ export default function WeeklyNoteEditor({ weekId, initialNote, onSave }) {
       <div className="flex items-center border-b border-slate-800 bg-slate-950/50 px-2 py-1">
         <button
           onClick={() => setActiveTab('edit')}
-          className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors rounded-t-lg \${
+          className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors rounded-t-lg ${
             activeTab === 'edit' ? 'text-indigo-400 bg-slate-900 shadow-sm border-b-2 border-indigo-500' : 'text-slate-500 hover:text-slate-300'
           }`}
         >
@@ -27,7 +27,7 @@ export default function WeeklyNoteEditor({ weekId, initialNote, onSave }) {
         </button>
         <button
           onClick={() => setActiveTab('preview')}
-          className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors rounded-t-lg \${
+          className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors rounded-t-lg ${
             activeTab === 'preview' ? 'text-emerald-400 bg-slate-900 shadow-sm border-b-2 border-emerald-500' : 'text-slate-500 hover:text-slate-300'
           }`}
         >

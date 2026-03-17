@@ -172,7 +172,7 @@ function App() {
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed md:relative z-50 w-72 h-full bg-slate-900 border-r border-slate-800 shadow-xl md:shadow-none flex flex-col transition-transform duration-300 ease-in-out \${
+      <aside className={`fixed md:relative z-50 w-72 h-full bg-slate-900 border-r border-slate-800 shadow-xl md:shadow-none flex flex-col transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } md:translate-x-0`}
       >
@@ -200,13 +200,13 @@ function App() {
           </div>
           <button
             onClick={() => handleMonthChange('dashboard')}
-            className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 \${
+            className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 ${
               activeMonthId === 'dashboard'
                 ? 'bg-indigo-500/10 text-indigo-400 shadow-sm font-medium' 
                 : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
             }`}
           >
-            <Activity size={18} className={`transition-colors duration-200 \${activeMonthId === 'dashboard' ? 'text-indigo-400' : 'text-slate-500'}`} />
+            <Activity size={18} className={`transition-colors duration-200 ${activeMonthId === 'dashboard' ? 'text-indigo-400' : 'text-slate-500'}`} />
             <div className="flex-1 text-left">
               <div className="text-sm truncate">İstatistikler</div>
             </div>
@@ -214,13 +214,13 @@ function App() {
 
           <button
             onClick={() => handleMonthChange('portfolio')}
-            className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 mb-4 \${
+            className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 mb-4 ${
               activeMonthId === 'portfolio'
                 ? 'bg-amber-500/10 text-amber-500 shadow-sm font-medium' 
                 : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
             }`}
           >
-            <FolderGit2 size={18} className={`transition-colors duration-200 \${activeMonthId === 'portfolio' ? 'text-amber-500' : 'text-slate-500'}`} />
+            <FolderGit2 size={18} className={`transition-colors duration-200 ${activeMonthId === 'portfolio' ? 'text-amber-500' : 'text-slate-500'}`} />
             <div className="flex-1 text-left">
               <div className="text-sm truncate">Portföyüm</div>
             </div>
@@ -233,17 +233,17 @@ function App() {
             <button
               key={month.id}
               onClick={() => handleMonthChange(month.id)}
-              className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 \${
+              className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 ${
                 activeMonthId === month.id 
                   ? 'bg-indigo-500/10 text-indigo-400 shadow-sm font-medium' 
                   : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
               }`}
             >
-              <Calendar size={18} className={`transition-colors duration-200 \${activeMonthId === month.id ? 'text-indigo-400' : 'text-slate-500'}`} />
+              <Calendar size={18} className={`transition-colors duration-200 ${activeMonthId === month.id ? 'text-indigo-400' : 'text-slate-500'}`} />
               <div className="flex-1 text-left">
                 <div className="text-sm truncate">{month.title.split('—')[0].trim()}</div>
               </div>
-              <ChevronRight size={16} className={`transition-all duration-300 \${activeMonthId === month.id ? 'text-indigo-400 opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`} />
+              <ChevronRight size={16} className={`transition-all duration-300 ${activeMonthId === month.id ? 'text-indigo-400 opacity-100 translate-x-0' : 'opacity-0 -translate-x-2'}`} />
             </button>
           ))}
         </nav>
@@ -294,7 +294,7 @@ function App() {
           ) : activeMonthId === 'portfolio' ? (
             <Portfolio portfolioData={portfolioData} onSaveGithubLink={handleSaveGithubLink} />
           ) : activeMonth ? (
-            <div className={`max-w-4xl mx-auto pb-12 transition-opacity duration-200 \${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+            <div className={`max-w-4xl mx-auto pb-12 transition-opacity duration-200 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
               
               {/* Active Month Header */}
             <div className="mb-6 md:mb-8">
@@ -307,7 +307,7 @@ function App() {
             {/* Weeks Container */}
             <div className="space-y-4 md:space-y-6">
               {activeMonth.weeks.map((week, idx) => {
-                const globalWeekId = `m\${activeMonth.id}-w\${week.id}`;
+                const globalWeekId = `m${activeMonth.id}-w${week.id}`;
                 
                 const isNoteOpen = openNoteWeekId === globalWeekId;
                 const hasNote = weeklyNotes[globalWeekId] && weeklyNotes[globalWeekId].trim().length > 0;
@@ -332,7 +332,7 @@ function App() {
                       {/* Kaynaklar İkonu */}
                       <button 
                         onClick={() => handleToggleLinks(globalWeekId)}
-                        className={`p-2 rounded-lg transition-all duration-200 \${
+                        className={`p-2 rounded-lg transition-all duration-200 ${
                           isLinksOpen || hasLinks 
                             ? 'text-emerald-400 bg-emerald-500/20 border border-emerald-500/30' 
                             : 'text-slate-500 hover:text-emerald-400 hover:bg-slate-800'
@@ -345,7 +345,7 @@ function App() {
                       {/* Not İkonu */}
                       <button 
                         onClick={() => handleToggleNote(globalWeekId)}
-                        className={`p-2 rounded-lg transition-all duration-200 \${
+                        className={`p-2 rounded-lg transition-all duration-200 ${
                           isNoteOpen || hasNote 
                             ? 'text-indigo-400 bg-indigo-500/20 border border-indigo-500/30' 
                             : 'text-slate-500 hover:text-indigo-400 hover:bg-slate-800'
@@ -372,7 +372,7 @@ function App() {
                             <Circle size={18} className="md:w-[20px] md:h-[20px]" />
                           )}
                         </button>
-                        <span className={`\${todo.completed ? 'text-slate-500 line-through' : 'text-slate-300'} text-[13px] md:text-sm font-medium leading-relaxed pt-px transition-all duration-200`}>
+                        <span className={`${todo.completed ? 'text-slate-500 line-through' : 'text-slate-300'} text-[13px] md:text-sm font-medium leading-relaxed pt-px transition-all duration-200`}>
                           {todo.text}
                         </span>
                       </div>

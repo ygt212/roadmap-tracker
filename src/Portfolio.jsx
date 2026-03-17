@@ -72,14 +72,14 @@ export default function Portfolio({ portfolioData, onSaveGithubLink }) {
           return (
             <div 
               key={proj.id} 
-              className={`flex flex-col bg-slate-900 border rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-lg \${
+              className={`flex flex-col bg-slate-900 border rounded-2xl p-6 md:p-8 transition-all duration-300 hover:shadow-lg ${
                 isCapstone 
                   ? 'lg:col-span-full border-amber-500/40 bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/20 shadow-amber-900/10' 
                   : 'border-slate-800 hover:border-indigo-500/30 shadow-indigo-900/10'
               }`}
             >
               <div className="flex-1">
-                <h2 className={`text-xl md:text-2xl font-bold mb-3 \${isCapstone ? 'text-amber-400' : 'text-slate-100'}`}>
+                <h2 className={`text-xl md:text-2xl font-bold mb-3 ${isCapstone ? 'text-amber-400' : 'text-slate-100'}`}>
                   {proj.title}
                 </h2>
                 <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-6">
@@ -133,7 +133,7 @@ export default function Portfolio({ portfolioData, onSaveGithubLink }) {
                       href={savedUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex items-center gap-2 font-medium truncate \${isCapstone ? 'text-amber-400 hover:text-amber-300' : 'text-indigo-400 hover:text-indigo-300'} transition-colors`}
+                      className={`flex items-center gap-2 font-medium truncate ${isCapstone ? 'text-amber-400 hover:text-amber-300' : 'text-indigo-400 hover:text-indigo-300'} transition-colors`}
                       title={savedUrl}
                     >
                       <Github size={18} />

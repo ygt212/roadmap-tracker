@@ -166,7 +166,7 @@ export default function Dashboard({ data, weeklyNotes, weeklyLinks }) {
                 animationDuration={1500}
               >
                 {stats.chartData.map((entry, index) => (
-                  <Cell key={`cell-\${index}`} fill={entry.percentage === 100 ? '#10b981' : '#6366f1'} />
+                  <Cell key={`cell-${index}`} fill={entry.percentage === 100 ? '#10b981' : '#6366f1'} />
                 ))}
               </Bar>
             </BarChart>
