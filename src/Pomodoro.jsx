@@ -1,22 +1,52 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Play, Pause, RotateCcw, Coffee, Brain, Timer, Minimize2, Settings, BellOff } from 'lucide-react';
 
+const POMODORO_STORAGE_KEY = 'roadmapPomodoroSettings';
+
+function readSavedDurations() {
+  try {
+    const rawValue = localStorage.getItem(POMODORO_STORAGE_KEY);
+    if (!rawValue) {
+      return { workDuration: 25, breakDuration: 5 };
+    }
+
+    const parsedValue = JSON.parse(rawValue);
+    const workDuration = Number(parsedValue.workDuration);
+    const breakDuration = Number(parsedValue.breakDuration);
+
+    return {
+      workDuration: Number.isFinite(workDuration) && workDuration > 0 ? workDuration : 25,
+      breakDuration: Number.isFinite(breakDuration) && breakDuration > 0 ? breakDuration : 5
+    };
+  } catch (error) {
+    return { workDuration: 25, breakDuration: 5 };
+  }
+}
+
 export default function Pomodoro() {
+  const savedDurations = useMemo(() => readSavedDurations(), []);
   const [isOpen, setIsOpen] = useState(false);
   const [mode, setMode] = useState('work');
   const [isActive, setIsActive] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [workDuration, setWorkDuration] = useState(25);
-  const [breakDuration, setBreakDuration] = useState(5);
+  const [workDuration, setWorkDuration] = useState(savedDurations.workDuration);
+  const [breakDuration, setBreakDuration] = useState(savedDurations.breakDuration);
   const durations = useMemo(() => ({
     work: workDuration * 60,
     break: breakDuration * 60
   }), [workDuration, breakDuration]);
-  const [timeLeft, setTimeLeft] = useState(durations.work);
+  const [timeLeft, setTimeLeft] = useState(savedDurations.workDuration * 60);
   const [isAlarmRinging, setIsAlarmRinging] = useState(false);
 
   const audioCtxRef = useRef(null);
-  const intervalRef = useRef(null);
+  const alarmIntervalRef = useRef(null);
+
+  useEffect(() => {
+    localStorage.setItem(
+      POMODORO_STORAGE_KEY,
+      JSON.stringify({ workDuration, breakDuration })
+    );
+  }, [workDuration, breakDuration]);
 
   const playBeep = useCallback(() => {
     if (!audioCtxRef.current) {
@@ -40,9 +70,9 @@ export default function Pomodoro() {
 
   const stopAlarm = useCallback(() => {
     setIsAlarmRinging(false);
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+    if (alarmIntervalRef.current) {
+      clearInterval(alarmIntervalRef.current);
+      alarmIntervalRef.current = null;
     }
   }, []);
 
@@ -50,7 +80,7 @@ export default function Pomodoro() {
     stopAlarm();
     setIsAlarmRinging(true);
     playBeep();
-    intervalRef.current = setInterval(playBeep, 1000);
+    alarmIntervalRef.current = setInterval(playBeep, 1000);
   }, [playBeep, stopAlarm]);
 
   useEffect(() => () => stopAlarm(), [stopAlarm]);
@@ -60,10 +90,10 @@ export default function Pomodoro() {
       return undefined;
     }
 
-    const interval = setInterval(() => {
+    const timerInterval = setInterval(() => {
       setTimeLeft((currentTime) => {
         if (currentTime <= 1) {
-          clearInterval(interval);
+          clearInterval(timerInterval);
           setIsActive(false);
           startAlarm();
           return 0;
@@ -73,7 +103,7 @@ export default function Pomodoro() {
       });
     }, 1000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(timerInterval);
   }, [isActive, startAlarm]);
 
   const handleTabChange = (newMode) => {
@@ -96,8 +126,8 @@ export default function Pomodoro() {
     setTimeLeft(durations[mode]);
   };
 
-  const handleSaveSettings = (e) => {
-    e.preventDefault();
+  const handleSaveSettings = (event) => {
+    event.preventDefault();
     stopAlarm();
     setIsEditing(false);
     setIsActive(false);
@@ -105,9 +135,9 @@ export default function Pomodoro() {
   };
 
   const formatTime = (seconds) => {
-    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
-    const s = (seconds % 60).toString().padStart(2, '0');
-    return `${m}:${s}`;
+    const minutes = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
+    return `${minutes}:${remainingSeconds}`;
   };
 
   const isWork = mode === 'work';
@@ -115,6 +145,7 @@ export default function Pomodoro() {
   if (!isOpen) {
     return (
       <button
+        type="button"
         onClick={() => setIsOpen(true)}
         className={`fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 text-white ${
           isWork ? 'bg-indigo-600 hover:bg-indigo-500 shadow-indigo-900/50' : 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/50'
@@ -132,10 +163,11 @@ export default function Pomodoro() {
       <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-900/50">
         <div className="flex items-center gap-2">
           <Timer size={18} className={isWork ? 'text-indigo-400' : 'text-emerald-400'} />
-          <span className="font-semibold text-slate-200 text-sm">Pomodoro Timer</span>
+          <span className="font-semibold text-slate-200 text-sm">Pomodoro</span>
         </div>
         <div className="flex items-center gap-1">
           <button
+            type="button"
             onClick={() => setIsEditing((currentValue) => !currentValue)}
             className={`p-1.5 rounded-lg transition-colors ${isEditing ? 'bg-slate-800 text-slate-200' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'}`}
             title="Süre Ayarları"
@@ -143,6 +175,7 @@ export default function Pomodoro() {
             <Settings size={16} />
           </button>
           <button
+            type="button"
             onClick={() => setIsOpen(false)}
             className="p-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors"
           >
@@ -161,7 +194,7 @@ export default function Pomodoro() {
                 min="1"
                 max="120"
                 value={workDuration}
-                onChange={(e) => setWorkDuration(Number(e.target.value))}
+                onChange={(event) => setWorkDuration(Number(event.target.value))}
                 className="w-full bg-slate-950 border border-slate-800 text-slate-200 text-sm rounded-lg px-3 py-2.5 focus:outline-none focus:border-indigo-500 transition-colors"
                 required
               />
@@ -173,7 +206,7 @@ export default function Pomodoro() {
                 min="1"
                 max="60"
                 value={breakDuration}
-                onChange={(e) => setBreakDuration(Number(e.target.value))}
+                onChange={(event) => setBreakDuration(Number(event.target.value))}
                 className="w-full bg-slate-950 border border-slate-800 text-slate-200 text-sm rounded-lg px-3 py-2.5 focus:outline-none focus:border-emerald-500 transition-colors"
                 required
               />
@@ -189,6 +222,7 @@ export default function Pomodoro() {
           <div className="animate-in fade-in duration-200">
             <div className="flex p-1 bg-slate-950/80 rounded-xl mb-6 border border-slate-800">
               <button
+                type="button"
                 onClick={() => handleTabChange('work')}
                 className={`flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                   isWork ? 'bg-indigo-500/20 text-indigo-400 shadow-sm border border-indigo-500/20' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900 border border-transparent'
@@ -198,6 +232,7 @@ export default function Pomodoro() {
                 Odak
               </button>
               <button
+                type="button"
                 onClick={() => handleTabChange('break')}
                 className={`flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                   !isWork ? 'bg-emerald-500/20 text-emerald-400 shadow-sm border border-emerald-500/20' : 'text-slate-500 hover:text-slate-300 hover:bg-slate-900 border border-transparent'
@@ -220,16 +255,18 @@ export default function Pomodoro() {
             {isAlarmRinging ? (
               <div className="flex items-center justify-center">
                 <button
+                  type="button"
                   onClick={stopAlarm}
                   className="flex items-center gap-2 bg-rose-500/20 text-rose-400 border border-rose-500/30 hover:bg-rose-500 hover:text-white px-6 py-3.5 rounded-2xl shadow-lg transition-all duration-300 animate-pulse w-full justify-center"
                 >
                   <BellOff size={20} />
-                  <span className="font-semibold tracking-wide">ALARM'I KAPAT</span>
+                  <span className="font-semibold tracking-wide">Alarmı Kapat</span>
                 </button>
               </div>
             ) : (
               <div className="flex items-center justify-center gap-4">
                 <button
+                  type="button"
                   onClick={resetTimer}
                   className="p-3 text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 rounded-xl transition-all duration-200"
                   title="Sıfırla"
@@ -238,6 +275,7 @@ export default function Pomodoro() {
                 </button>
 
                 <button
+                  type="button"
                   onClick={toggleTimer}
                   className={`flex items-center justify-center w-14 h-14 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 text-white ${
                     isWork

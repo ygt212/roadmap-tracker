@@ -1,300 +1,300 @@
 export const roadmapData = [
   {
     id: 1,
-    title: "1. Ay — Temel programlama + veriyle çalışma alışkanlığı",
-    overview: "Önce araç hâkimiyeti kazan. Bu ayın sonunda bir CSV dosyasını okuyup temizleyebilmeli, filtreleyebilmeli, özetleyebilmeli ve basit grafikler çizebilmelisin.",
+    title: '1. Ay - Temel programlama ve veriyle çalışma alışkanlığı',
+    overview: 'Araç hakimiyeti kur. Bu ayın sonunda bir CSV dosyasını okuyup temizleyebilmeli, filtreleyebilmeli, özetleyebilmeli ve basit grafikler çizebilmelisin.',
     weeks: [
       {
-        id: "m1-w1",
-        title: "1. hafta",
-        goals: "Programlama temelleri, Dosya okuma/yazma, Basit veri tipleri, Küçük alıştırmalar",
+        id: 'm1-w1',
+        title: '1. hafta',
+        goals: 'Programlama temelleri, dosya okuma yazma, veri tipleri ve küçük alıştırmalar',
         todos: [
-          { id: "t-1", text: "Programlama temelleri çalış", completed: false },
-          { id: "t-2", text: "Dosya okuma/yazma yap", completed: false },
-          { id: "t-3", text: "Basit veri tipleri öğren", completed: false },
-          { id: "t-4", text: "Küçük alıştırmalar çöz", completed: false }
+          { id: 't-1', text: 'Programlama temellerini çalış', completed: false },
+          { id: 't-2', text: 'Dosya okuma ve yazma pratiği yap', completed: false },
+          { id: 't-3', text: 'Temel veri tiplerini öğren', completed: false },
+          { id: 't-4', text: 'Kısa alıştırmalar çöz', completed: false }
         ]
       },
       {
-        id: "m1-w2",
-        title: "2. hafta",
-        goals: "DataFrame mantığı, Satır/sütun seçme, filtreleme, sıralama, eksik veri",
+        id: 'm1-w2',
+        title: '2. hafta',
+        goals: 'DataFrame mantığı, satır sütun seçme, filtreleme, sıralama ve eksik veri',
         todos: [
-          { id: "t-5", text: "DataFrame mantığı anla", completed: false },
-          { id: "t-6", text: "Satır/sütun seçme pratiği", completed: false },
-          { id: "t-7", text: "Filtreleme ve sıralama yap", completed: false },
-          { id: "t-8", text: "Eksik veriyle tanışma", completed: false }
+          { id: 't-5', text: 'DataFrame mantığını kavra', completed: false },
+          { id: 't-6', text: 'Satır ve sütun seçme pratiği yap', completed: false },
+          { id: 't-7', text: 'Filtreleme ve sıralama uygula', completed: false },
+          { id: 't-8', text: 'Eksik veri senaryolarını incele', completed: false }
         ]
       },
       {
-        id: "m1-w3",
-        title: "3. hafta",
-        goals: "Gruplama, toplulaştırma, Birleştirme işlemleri, Temel görselleştirme",
+        id: 'm1-w3',
+        title: '3. hafta',
+        goals: 'Gruplama, toplulaştırma, birleştirme işlemleri ve temel görselleştirme',
         todos: [
-          { id: "t-9", text: "Gruplama ve toplulaştırma", completed: false },
-          { id: "t-10", text: "Birleştirme işlemleri", completed: false },
-          { id: "t-11", text: "Temel görselleştirme kütüphanelerine (matplotlib vb.) giriş", completed: false }
+          { id: 't-9', text: 'Gruplama ve toplulaştırma uygula', completed: false },
+          { id: 't-10', text: 'Birleştirme işlemlerini öğren', completed: false },
+          { id: 't-11', text: 'Matplotlib veya benzeri bir araçla grafik üret', completed: false }
         ]
       },
       {
-        id: "m1-w4",
-        title: "4. hafta",
-        goals: "Baştan sona mini analiz",
+        id: 'm1-w4',
+        title: '4. hafta',
+        goals: 'Baştan sona mini analiz',
         todos: [
-          { id: "t-12", text: "Küçük bir veri seti al", completed: false },
-          { id: "t-13", text: "Temizle, özetle, görselleştir", completed: false },
-          { id: "t-14", text: "Kısa yorum yaz ve ay sonu çıktısı oluştur", completed: false }
+          { id: 't-12', text: 'Küçük bir veri seti seç', completed: false },
+          { id: 't-13', text: 'Veriyi temizle, özetle ve görselleştir', completed: false },
+          { id: 't-14', text: 'Kısa bir yorum yaz ve ay sonu çıktısı oluştur', completed: false }
         ]
       }
     ],
     milestones: {
-      output: "Bir Jupyter Notebook veya R Markdown dosyası: veri seti tanıtımı, temizlik adımları, 3–4 grafik, 1 sayfalık kısa yorum",
-      successCriteria: "Şunu rahat yapabiliyor ol: 'Bir veri setini aç, problemli sütunları bul, temizle, özet tablo çıkar, grafik üret.'"
+      output: 'Bir notebook: veri seti tanıtımı, temizlik adımları, 3 ila 4 grafik ve kısa yorum',
+      successCriteria: 'Bir veri setini açıp problemli sütunları bulabiliyor, temizleyebiliyor ve grafik üretebiliyor ol.'
     }
   },
   {
     id: 2,
-    title: "2. Ay — Temel istatistik + keşifsel veri analizi",
-    overview: "Sosyal veride teknik eşik sadece kod yazmak değil, veriyi istatistiksel olarak okumak. LSE ve NYU gibi programlar güçlü istatistik temelini özellikle vurguluyor.",
+    title: '2. Ay - Temel istatistik ve keşifsel veri analizi',
+    overview: 'Kod yazmanın ötesine geçip veriyi istatistiksel olarak okumayı öğren. Amaç, sosyal veride örüntüleri doğru yorumlamak.',
     weeks: [
       {
-        id: "m2-w1",
-        title: "1. hafta",
-        goals: "Betimsel istatistik, Dağılımları okuma, Histogram, boxplot",
+        id: 'm2-w1',
+        title: '1. hafta',
+        goals: 'Betimsel istatistik, dağılımlar, histogram ve boxplot',
         todos: [
-          { id: "t-15", text: "Betimsel istatistik öğren", completed: false },
-          { id: "t-16", text: "Dağılımları okuma pratiği", completed: false },
-          { id: "t-17", text: "Histogram, boxplot, density plot çizimleri", completed: false }
+          { id: 't-15', text: 'Betimsel istatistik kavramlarını öğren', completed: false },
+          { id: 't-16', text: 'Dağılımları yorumlama pratiği yap', completed: false },
+          { id: 't-17', text: 'Histogram ve boxplot çiz', completed: false }
         ]
       },
       {
-        id: "m2-w2",
-        title: "2. hafta",
-        goals: "Olasılık sezgisi, Normal dağılım, Standartlaştırma",
+        id: 'm2-w2',
+        title: '2. hafta',
+        goals: 'Olasılık sezgisi, normal dağılım, standartlaştırma ve örnekleme hatası',
         todos: [
-          { id: "t-18", text: "Olasılık sezgisi kur", completed: false },
-          { id: "t-19", text: "Normal dağılım ve standartlaştırma", completed: false },
-          { id: "t-20", text: "Örnekleme hatası mantığını kavra", completed: false }
+          { id: 't-18', text: 'Olasılık sezgisini güçlendir', completed: false },
+          { id: 't-19', text: 'Normal dağılım ve standartlaştırmayı çalış', completed: false },
+          { id: 't-20', text: 'Örnekleme hatasını anlamaya odaklan', completed: false }
         ]
       },
       {
-        id: "m2-w3",
-        title: "3. hafta",
-        goals: "Hipotez testi, t-testi, ki-kare",
+        id: 'm2-w3',
+        title: '3. hafta',
+        goals: 'Hipotez testi, t-testi, ki-kare ve anlamlılık yorumu',
         todos: [
-          { id: "t-21", text: "Hipotez testi", completed: false },
-          { id: "t-22", text: "t-testi, ki-kare mantığı", completed: false },
-          { id: "t-23", text: "İstatistiksel anlamlılık ile pratik anlam farkı", completed: false }
+          { id: 't-21', text: 'Hipotez testi mantığını öğren', completed: false },
+          { id: 't-22', text: 't-testi ve ki-kare örnekleri çöz', completed: false },
+          { id: 't-23', text: 'İstatistiksel ve pratik anlam farkını not al', completed: false }
         ]
       },
       {
-        id: "m2-w4",
-        title: "4. hafta",
-        goals: "Keşifsel veri analizi (EDA) projesi",
+        id: 'm2-w4',
+        title: '4. hafta',
+        goals: 'Keşifsel veri analizi projesi',
         todos: [
-          { id: "t-24", text: "Bir sosyal konu seç (eğitim, gelir vs.)", completed: false },
-          { id: "t-25", text: "Verideki en dikkat çekici örüntüleri bul", completed: false },
-          { id: "t-26", text: "EDA projesi çıktısı hazırla (araştırma sorusu, grafikler, yorum)", completed: false }
+          { id: 't-24', text: 'Bir sosyal konuya ait veri seti seç', completed: false },
+          { id: 't-25', text: 'Dikkat çekici örüntüleri bul ve görselleştir', completed: false },
+          { id: 't-26', text: 'İlk bulgularını ve sınırlılıkları yaz', completed: false }
         ]
       }
     ],
     milestones: {
-      output: "Bir EDA projesi: araştırma sorusu, veri tanımı, temel istatistikler, grafikler, ilk bulgular, sınırlılıklar",
-      successCriteria: "Şunu açıklayabiliyor ol: 'İki değişken ilişkili görünüyor ama bu neden-sonuç kanıtı değildir.'"
+      output: 'Bir EDA projesi: araştırma sorusu, temel istatistikler, grafikler, ilk bulgular ve sınırlılıklar',
+      successCriteria: 'İki değişken ilişkili görünse bile bunun nedensellik kanıtı olmadığını açıklayabiliyor ol.'
     }
   },
   {
     id: 3,
-    title: "3. Ay — Regresyon + araştırma tasarımı",
-    overview: "Sosyal veri yüksek lisansında seni farklılaştıracak şey, sadece analiz yapmak değil, doğru soru sormak. Programlar araştırma tasarımı ve causal inference tarafını özellikle önemsiyor.",
+    title: '3. Ay - Regresyon ve araştırma tasarımı',
+    overview: 'Bu ayın odağı doğru araştırma sorusu kurmak ve regresyon çıktısını sosyal bilim bağlamında yorumlamak.',
     weeks: [
       {
-        id: "m3-w1",
-        title: "1. hafta",
-        goals: "Araştırma sorusu kurma, Kavramsal çerçeve, Değişkenleştirme",
+        id: 'm3-w1',
+        title: '1. hafta',
+        goals: 'Araştırma sorusu kurma, kavramsal çerçeve ve değişkenleştirme',
         todos: [
-          { id: "t-27", text: "Araştırma sorusu kurma pratiği yap", completed: false },
-          { id: "t-28", text: "Kavramsal çerçeve mantığını anla", completed: false },
-          { id: "t-29", text: "Soyut kavramları ölçülebilir hale getir (Değişkenleştirme)", completed: false }
+          { id: 't-27', text: 'Araştırma sorusu yazma pratiği yap', completed: false },
+          { id: 't-28', text: 'Kavramsal çerçeve oluştur', completed: false },
+          { id: 't-29', text: 'Soyut kavramları ölçülebilir değişkenlere dönüştür', completed: false }
         ]
       },
       {
-        id: "m3-w2",
-        title: "2. hafta",
-        goals: "Lineer regresyon mantığı, Katsayı okuma, R², hata terimi",
+        id: 'm3-w2',
+        title: '2. hafta',
+        goals: 'Lineer regresyon mantığı, katsayı okuma, R kare ve temel varsayımlar',
         todos: [
-          { id: "t-30", text: "Lineer regresyon mantığını kavra", completed: false },
-          { id: "t-31", text: "Regresyon katsayılarını okumayı öğren", completed: false },
-          { id: "t-32", text: "R², hata terimi ve temel varsayımları anla", completed: false }
+          { id: 't-30', text: 'Lineer regresyonun mantığını kavra', completed: false },
+          { id: 't-31', text: 'Katsayı yorumlama pratiği yap', completed: false },
+          { id: 't-32', text: 'R kare ve hata terimini anlamlandır', completed: false }
         ]
       },
       {
-        id: "m3-w3",
-        title: "3. hafta",
-        goals: "Lojistik regresyona giriş, Kategorik sonuçlar, Dummy variable",
+        id: 'm3-w3',
+        title: '3. hafta',
+        goals: 'Lojistik regresyona giriş, kategorik sonuçlar ve dummy değişkenler',
         todos: [
-          { id: "t-33", text: "Lojistik regresyona giriş yap", completed: false },
-          { id: "t-34", text: "Kategorik sonuçlarla çalışmayı öğren", completed: false },
-          { id: "t-35", text: "Dummy variable mantığını kavra", completed: false }
+          { id: 't-33', text: 'Lojistik regresyona giriş yap', completed: false },
+          { id: 't-34', text: 'Kategorik sonuçlarla çalışma pratiği yap', completed: false },
+          { id: 't-35', text: 'Dummy değişken mantığını öğren', completed: false }
         ]
       },
       {
-        id: "m3-w4",
-        title: "4. hafta",
-        goals: "Sosyal bilim odaklı mini proje",
+        id: 'm3-w4',
+        title: '4. hafta',
+        goals: 'Sosyal bilim odaklı mini proje',
         todos: [
-          { id: "t-36", text: "Mini proje alanını seç (Eğitim, gelir, vd.)", completed: false },
-          { id: "t-37", text: "Soruyu sor, modeli tasarla, regresyon analizi yap", completed: false },
-          { id: "t-38", text: "İlk 'yarı akademik' raporunu hazırla", completed: false }
+          { id: 't-36', text: 'Bir sosyal araştırma sorusu seç', completed: false },
+          { id: 't-37', text: 'Modelini kur ve regresyon analizi yap', completed: false },
+          { id: 't-38', text: 'Yarı akademik bir kısa rapor hazırla', completed: false }
         ]
       }
     ],
     milestones: {
-      output: "İlk yarı akademik rapor: soru, literatür benzeri kısa çerçeve, veri ve yöntem, regresyon tablosu, yorum, sınırlılıklar",
-      successCriteria: "Bir regresyon tablosunu okuyup şunu söyleyebil: 'Bu ilişki var gibi görünüyor ama karıştırıcı değişkenler yüzünden nedensel iddia kuramam.'"
+      output: 'Soru, veri ve yöntem bölümleri olan kısa bir rapor ve regresyon tablosu',
+      successCriteria: 'Bir regresyon tablosunu okuyup karıştırıcı değişken riskini açıklayabiliyor ol.'
     }
   },
   {
     id: 4,
-    title: "4. Ay — Makine öğrenmesi temelleri + değerlendirme",
-    overview: "Oxford ve LSE gibi programlar makine öğrenmesini sosyal veri eğitimine dahil ediyor; ama burada önemli olan 'en karmaşık modeli kurmak' değil, modeli sosyal bağlam içinde doğru kullanmak.",
+    title: '4. Ay - Makine öğrenmesi temelleri ve değerlendirme',
+    overview: 'Makine öğrenmesini sosyal bağlam içinde kullanmayı öğren. Amaç en karmaşık modeli kurmak değil, doğru problemi doğru metriklerle değerlendirmek.',
     weeks: [
       {
-        id: "m4-w1",
-        title: "1. hafta",
-        goals: "ML’e giriş, Tahmin ve açıklama ayrımı",
+        id: 'm4-w1',
+        title: '1. hafta',
+        goals: 'Makine öğrenmesine giriş, tahmin ve açıklama ayrımı',
         todos: [
-          { id: "t-39", text: "Makine öğrenmesine giriş yap", completed: false },
-          { id: "t-40", text: "İstatistik ile ML farkını anla", completed: false },
-          { id: "t-41", text: "Tahmin (prediction) ve açıklama (explanation) ayrımını çalış", completed: false }
+          { id: 't-39', text: 'Makine öğrenmesinin temel mantığını öğren', completed: false },
+          { id: 't-40', text: 'İstatistik ve makine öğrenmesi farkını not al', completed: false },
+          { id: 't-41', text: 'Tahmin ve açıklama ayrımını örneklerle çalış', completed: false }
         ]
       },
       {
-        id: "m4-w2",
-        title: "2. hafta",
-        goals: "Train/test split, Basit modeller, Performans ölçütleri",
+        id: 'm4-w2',
+        title: '2. hafta',
+        goals: 'Train test ayrımı, baseline model ve performans ölçütleri',
         todos: [
-          { id: "t-42", text: "Veriyi train/test olarak bölmeyi öğren", completed: false },
-          { id: "t-43", text: "Basit sınıflandırma ve regresyon modelleri kur", completed: false },
-          { id: "t-44", text: "Accuracy, precision, recall, F1 gibi metrikleri kavra", completed: false }
+          { id: 't-42', text: 'Train test split uygula', completed: false },
+          { id: 't-43', text: 'Basit sınıflandırma veya regresyon modeli kur', completed: false },
+          { id: 't-44', text: 'Accuracy, precision, recall ve F1 metriklerini karşılaştır', completed: false }
         ]
       },
       {
-        id: "m4-w3",
-        title: "3. hafta",
-        goals: "Ağaç tabanlı modeller, Feature importance, Overfitting",
+        id: 'm4-w3',
+        title: '3. hafta',
+        goals: 'Ağaç tabanlı modeller, feature importance ve overfitting',
         todos: [
-          { id: "t-45", text: "Decision tree ve Random forest algoritmalarını çalış", completed: false },
-          { id: "t-46", text: "Feature importance ile değişkenleri yorumla", completed: false },
-          { id: "t-47", text: "Overfitting (aşırı öğrenme) senaryolarını incele ve engelle", completed: false }
+          { id: 't-45', text: 'Decision tree veya random forest dene', completed: false },
+          { id: 't-46', text: 'Feature importance yorumla', completed: false },
+          { id: 't-47', text: 'Overfitting örnekleri incele', completed: false }
         ]
       },
       {
-        id: "m4-w4",
-        title: "4. hafta",
-        goals: "Küçük sosyal veri tahmin projesi",
+        id: 'm4-w4',
+        title: '4. hafta',
+        goals: 'Tahmin odaklı sosyal veri mini projesi',
         todos: [
-          { id: "t-48", text: "Tahmin (prediction) odaklı sosyal veri problemi bul", completed: false },
-          { id: "t-49", text: "Model kur, baseline ve 2 ayrı model karşılaştırması yap", completed: false },
-          { id: "t-50", text: "Yorumlanabilirlik ve etik risk notunu rapora ekle", completed: false }
+          { id: 't-48', text: 'Bir tahmin problemi tanımla', completed: false },
+          { id: 't-49', text: 'En az iki model karşılaştır', completed: false },
+          { id: 't-50', text: 'Etik risk ve yorumlanabilirlik notu ekle', completed: false }
         ]
       }
     ],
     milestones: {
-      output: "Tahmin odaklı mini proje: problem tanımı, veri hazırlama, baseline + en az 2 model, model karşılaştırma, yorumlanabilirlik değerlendirmesi, etik risk notu",
-      successCriteria: "Şunu net söyleyebiliyor ol: 'Daha yüksek accuracy, her zaman daha iyi sosyal bilim analizi anlamına gelmez.'"
+      output: 'Problem tanımı, veri hazırlama, model karşılaştırması ve yorum içeren mini ML projesi',
+      successCriteria: 'Daha yüksek doğruluğun her zaman daha iyi sosyal analiz anlamına gelmediğini açıklayabiliyor ol.'
     }
   },
   {
     id: 5,
-    title: "5. Ay — Metin analizi / ağ analizi + etik",
-    overview: "Sosyal veri alanında özellikle text analysis ve network analysis öne çıkıyor. Ayrıca etik, bias ve mahremiyet bu alanda temel yeterliliklerden biri.",
+    title: '5. Ay - Metin analizi veya ağ analizi ve etik',
+    overview: 'Bu ay bir teknik kulvara derinleşirken etik, bias ve mahremiyet tarafını da görünür biçimde çalış.',
     weeks: [
       {
-        id: "m5-w1",
-        title: "1. ve 2. hafta",
-        goals: "Metin (NLP) veya Ağ Analizine Giriş + Teknik Uygulama",
+        id: 'm5-w1',
+        title: '1. ve 2. hafta',
+        goals: 'Metin analizi veya ağ analizine giriş ve ilk uygulamalar',
         todos: [
-          { id: "t-51", text: "YOL A: Metin temizleme, tokenization, frekans ve topic modeling", completed: false },
-          { id: "t-52", text: "YOL B: Düğüm, kenar (node/edge), centrality ve community mantığı", completed: false },
-          { id: "t-53", text: "Seçilen alanda minik uygulama yap (Örn: sosyal medya tema analizi veya etkileşim ağı)", completed: false }
+          { id: 't-51', text: 'Metin temizleme veya ağ temellerini öğren', completed: false },
+          { id: 't-52', text: 'Tokenization, topic veya centrality gibi kavramları uygula', completed: false },
+          { id: 't-53', text: 'Seçtiğin kulvarda küçük bir deneme yap', completed: false }
         ]
       },
       {
-        id: "m5-w2",
-        title: "3. hafta",
-        goals: "Küçük proje geliştirme",
+        id: 'm5-w2',
+        title: '3. hafta',
+        goals: 'Küçük proje geliştirme',
         todos: [
-          { id: "t-54", text: "Metin veya Ağ analizi temel alınarak mini bir sosyal veri projesi başlat", completed: false },
-          { id: "t-55", text: "Veriyi topla/bul, temizle ve analiz yöntemini uygula", completed: false },
-          { id: "t-56", text: "Bulguları görselleştir ve ilk yorumlarını yaz", completed: false }
+          { id: 't-54', text: 'Bir mini proje başlat', completed: false },
+          { id: 't-55', text: 'Veriyi temizle ve yöntemi uygula', completed: false },
+          { id: 't-56', text: 'Bulguları görselleştir ve ilk yorumlarını yaz', completed: false }
         ]
       },
       {
-        id: "m5-w3",
-        title: "4. hafta",
-        goals: "Etik değerlendirme ve Raporlama",
+        id: 'm5-w3',
+        title: '4. hafta',
+        goals: 'Etik değerlendirme ve raporlama',
         todos: [
-          { id: "t-57", text: "Sampling bias, representation bias ve privacy kavramlarını çalış", completed: false },
-          { id: "t-58", text: "Platform verilerinde etik sorunlar (consent) tartışmalarını oku", completed: false },
-          { id: "t-59", text: "Projenin etik risklerini ve metodolojik sınırlarını raporuna ekle", completed: false }
+          { id: 't-57', text: 'Bias ve privacy kavramlarını çalış', completed: false },
+          { id: 't-58', text: 'Consent ve platform verisi etik risklerini oku', completed: false },
+          { id: 't-59', text: 'Projeye etik riskler ve sınırlılıklar bölümü ekle', completed: false }
         ]
       }
     ],
     milestones: {
-      output: "Bir tematik proje: veri kaynağı, yöntem, bulgular, etik riskler, metodolojik sınırlılıklar",
-      successCriteria: "Şunu tartışabiliyor ol: 'Bu analiz teknik olarak mümkün ama etik olarak sorunlu olabilir.'"
+      output: 'Veri kaynağı, yöntem, bulgular ve etik değerlendirme içeren tematik proje',
+      successCriteria: 'Teknik olarak mümkün olan bir analizin etik açıdan sorunlu olabileceğini tartışabiliyor ol.'
     }
   },
   {
     id: 6,
-    title: "6. Ay — Capstone proje + portföy + başvuruya dönüştürme",
-    overview: "Son ayın odağı öğrenmek değil, kanıt üretmek. Başvuru komitesi 'hangi videoları izlediğinle' değil, ne üretebildiğinle ilgilenir.",
+    title: '6. Ay - Capstone proje, portföy ve başvuru hazırlığı',
+    overview: 'Son ayın amacı öğrenmekten çok üretmek. Başvuru dosyasına girecek güçlü bir capstone proje ve düzenli bir portföy oluştur.',
     weeks: [
       {
-        id: "m6-w1",
-        title: "1. hafta",
-        goals: "Capstone Konu Seçimi ve Planlama",
+        id: 'm6-w1',
+        title: '1. hafta',
+        goals: 'Capstone konu seçimi ve planlama',
         todos: [
-          { id: "t-60", text: "Sosyal etki yaratan net bir araştırma sorusu belirle", completed: false },
-          { id: "t-61", text: "Kullanacağın veri setini sabitle", completed: false },
-          { id: "t-62", text: "Uygulayacağın analiz/modelleme adımlarını (yöntem akışını) çıkar", completed: false }
+          { id: 't-60', text: 'Net bir araştırma sorusu belirle', completed: false },
+          { id: 't-61', text: 'Kullanacağın veri setini sabitle', completed: false },
+          { id: 't-62', text: 'Yöntem akışını planla', completed: false }
         ]
       },
       {
-        id: "m6-w2",
-        title: "2. hafta",
-        goals: "Veri temizleme ve İlk analizler",
+        id: 'm6-w2',
+        title: '2. hafta',
+        goals: 'Veri temizleme ve ilk analizler',
         todos: [
-          { id: "t-63", text: "Veri temizliği aşamasını (cleaning/preprocessing) tamamla", completed: false },
-          { id: "t-64", text: "Keşifsel analiz (EDA) yap ve temel bulguları değerlendir", completed: false },
-          { id: "t-65", text: "Gerekirse araştırma sorusunda iyileştirmeler yap", completed: false }
+          { id: 't-63', text: 'Veri temizliğini tamamla', completed: false },
+          { id: 't-64', text: 'İlk keşifsel analizleri yap', completed: false },
+          { id: 't-65', text: 'Gerekirse araştırma sorusunu daralt', completed: false }
         ]
       },
       {
-        id: "m6-w3",
-        title: "3. hafta",
-        goals: "Ana modelleme, Görseller ve Bulguların yazımı",
+        id: 'm6-w3',
+        title: '3. hafta',
+        goals: 'Ana modelleme, görseller ve bulguların yazımı',
         todos: [
-          { id: "t-66", text: "İstatistiksel analiz veya makine öğrenmesi modellerini inşa et", completed: false },
-          { id: "t-67", text: "Sonuçları etkili tablolar ve grafiklerle sun", completed: false },
-          { id: "t-68", text: "Sonuçların toplumsal/sosyal bilim bağlamındaki bilimsel yorumunu taslak halinde yaz", completed: false }
+          { id: 't-66', text: 'Ana modelini veya analizini tamamla', completed: false },
+          { id: 't-67', text: 'Tablo ve grafiklerini üret', completed: false },
+          { id: 't-68', text: 'Bulguları toplumsal bağlamla birlikte yaz', completed: false }
         ]
       },
       {
-        id: "m6-w4",
-        title: "4. hafta",
-        goals: "Final rapor, GitHub düzeni ve CV uyarlaması",
+        id: 'm6-w4',
+        title: '4. hafta',
+        goals: 'Final rapor, GitHub düzeni ve başvuru anlatısı',
         todos: [
-          { id: "t-69", text: "Projenin final raporunu (Markdown, PDF vb.) tamamla", completed: false },
-          { id: "t-70", text: "Projeni düzenli ve açıklayıcı (README) bir şekilde GitHub deposunda yayınla", completed: false },
-          { id: "t-71", text: "Projeyi bir 'portföy' özetine dönüştürüp SOP/niyet mektubu anlatısına hazır hale getir", completed: false }
+          { id: 't-69', text: 'Final raporunu tamamla', completed: false },
+          { id: 't-70', text: 'Projeyi düzenli bir README ile GitHub’a yerleştir', completed: false },
+          { id: 't-71', text: 'Projeyi portföy ve başvuru anlatısına dönüştür', completed: false }
         ]
       }
     ],
     milestones: {
-      output: "1 capstone proje, 2–3 mini proje, GitHub veya düzenli klasör portföyü, 1 sayfalık “proje özetleri” dosyası",
-      successCriteria: "Bir hocaya veya başvuru komitesine 3 dakikada net olarak: Hangi soruyu sordun, hangi veriyi/yöntemi kullandın, ne buldun, sınırlılıklar nelerdi anlatabil."
+      output: 'Bir capstone proje, birkaç mini proje ve düzenli bir GitHub portföyü',
+      successCriteria: 'Bir hocaya veya başvuru komitesine 3 dakikada soru, veri, yöntem, bulgu ve sınırlılıkları net anlatabiliyor ol.'
     }
   }
 ];
