@@ -1,11 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { roadmapData } from './data';
-import { Calendar, CheckCircle2, Circle, ChevronRight, Menu, Map, RefreshCcw, Award, Flag, X } from 'lucide-react';
+import { Calendar, CheckCircle2, Circle, ChevronRight, Menu, Map, RefreshCcw, Award, Flag, X, StickyNote, Bookmark, Activity, FolderGit2 } from 'lucide-react';
+import Pomodoro from './Pomodoro';
+import WeeklyNoteEditor from './WeeklyNoteEditor';
+import WeeklyLinksManager from './WeeklyLinksManager';
+import Dashboard from './Dashboard';
+import Portfolio from './Portfolio';
 
 function App() {
   const [activeMonthId, setActiveMonthId] = useState(1);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+
+  // Haftalık Notlar State
+  const [openNoteWeekId, setOpenNoteWeekId] = useState(null);
+  const [weeklyNotes, setWeeklyNotes] = useState(() => {
+    const savedNotes = localStorage.getItem('roadmapWeeklyNotes');
+    return savedNotes ? JSON.parse(savedNotes) : {};
+  });
+
+  // Haftalık Linkler State
+  const [openLinksWeekId, setOpenLinksWeekId] = useState(null);
+  const [weeklyLinks, setWeeklyLinks] = useState(() => {
+    const savedLinks = localStorage.getItem('roadmapWeeklyLinks');
+    return savedLinks ? JSON.parse(savedLinks) : {};
+  });
+
+  // Portfolio State
+  const [portfolioData, setPortfolioData] = useState(() => {
+    const savedData = localStorage.getItem('roadmapPortfolio');
+    return savedData ? JSON.parse(savedData) : {};
+  });
 
   // Local Storage'dan veriyi çek, yoksa varsayılan veriyi kullan.
   const [data, setData] = useState(() => {
@@ -19,6 +44,50 @@ function App() {
   useEffect(() => {
     localStorage.setItem('roadmapData', JSON.stringify(data));
   }, [data]);
+
+  useEffect(() => {
+    localStorage.setItem('roadmapWeeklyNotes', JSON.stringify(weeklyNotes));
+  }, [weeklyNotes]);
+
+  useEffect(() => {
+    localStorage.setItem('roadmapWeeklyLinks', JSON.stringify(weeklyLinks));
+  }, [weeklyLinks]);
+
+  useEffect(() => {
+    localStorage.setItem('roadmapPortfolio', JSON.stringify(portfolioData));
+  }, [portfolioData]);
+
+  const handleSaveGithubLink = (id, url) => {
+    setPortfolioData(prev => ({
+      ...prev,
+      [id]: url
+    }));
+  };
+
+  // Expand toggles (mutually exclusive)
+  const handleToggleNote = (weekId) => {
+    setOpenLinksWeekId(null);
+    setOpenNoteWeekId(openNoteWeekId === weekId ? null : weekId);
+  };
+
+  const handleToggleLinks = (weekId) => {
+    setOpenNoteWeekId(null);
+    setOpenLinksWeekId(openLinksWeekId === weekId ? null : weekId);
+  };
+
+  const handleAddLink = (weekId, link) => {
+    setWeeklyLinks(prev => ({
+      ...prev,
+      [weekId]: [...(prev[weekId] || []), link]
+    }));
+  };
+
+  const handleRemoveLink = (weekId, linkId) => {
+    setWeeklyLinks(prev => ({
+      ...prev,
+      [weekId]: prev[weekId].filter(l => l.id !== linkId)
+    }));
+  };
 
   // Sekme değiştiğinde animasyon tetikle
   const handleMonthChange = (id) => {
@@ -127,6 +196,37 @@ function App() {
 
         <nav className="flex-1 overflow-y-auto p-4 space-y-1">
           <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 px-3">
+            Genel Bakış
+          </div>
+          <button
+            onClick={() => handleMonthChange('dashboard')}
+            className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 \${
+              activeMonthId === 'dashboard'
+                ? 'bg-indigo-500/10 text-indigo-400 shadow-sm font-medium' 
+                : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+            }`}
+          >
+            <Activity size={18} className={`transition-colors duration-200 \${activeMonthId === 'dashboard' ? 'text-indigo-400' : 'text-slate-500'}`} />
+            <div className="flex-1 text-left">
+              <div className="text-sm truncate">İstatistikler</div>
+            </div>
+          </button>
+
+          <button
+            onClick={() => handleMonthChange('portfolio')}
+            className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 mb-4 \${
+              activeMonthId === 'portfolio'
+                ? 'bg-amber-500/10 text-amber-500 shadow-sm font-medium' 
+                : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+            }`}
+          >
+            <FolderGit2 size={18} className={`transition-colors duration-200 \${activeMonthId === 'portfolio' ? 'text-amber-500' : 'text-slate-500'}`} />
+            <div className="flex-1 text-left">
+              <div className="text-sm truncate">Portföyüm</div>
+            </div>
+          </button>
+
+          <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3 px-3">
             Aylar
           </div>
           {data.map(month => (
@@ -188,10 +288,15 @@ function App() {
         </header>
 
         {/* Scrollable Content Area */}
-        <div className="flex-1 overflow-y-auto px-4 py-6 md:p-8 bg-slate-950">
-          <div className={`max-w-4xl mx-auto pb-12 transition-opacity duration-200 \${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
-            
-            {/* Active Month Header */}
+        <div className="flex-1 overflow-y-auto px-4 py-6 md:p-8 bg-slate-950 relative">
+          {activeMonthId === 'dashboard' ? (
+            <Dashboard data={data} weeklyNotes={weeklyNotes} weeklyLinks={weeklyLinks} />
+          ) : activeMonthId === 'portfolio' ? (
+            <Portfolio portfolioData={portfolioData} onSaveGithubLink={handleSaveGithubLink} />
+          ) : activeMonth ? (
+            <div className={`max-w-4xl mx-auto pb-12 transition-opacity duration-200 \${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+              
+              {/* Active Month Header */}
             <div className="mb-6 md:mb-8">
               <h1 className="text-xl md:text-3xl font-bold text-slate-100 mb-2 md:mb-3 leading-tight">{activeMonth.title}</h1>
               <p className="text-slate-300 leading-relaxed text-sm md:text-base bg-slate-900 p-4 md:p-5 rounded-xl md:rounded-2xl border border-slate-800 shadow-sm">
@@ -201,16 +306,55 @@ function App() {
 
             {/* Weeks Container */}
             <div className="space-y-4 md:space-y-6">
-              {activeMonth.weeks.map((week, idx) => (
+              {activeMonth.weeks.map((week, idx) => {
+                const globalWeekId = `m\${activeMonth.id}-w\${week.id}`;
+                
+                const isNoteOpen = openNoteWeekId === globalWeekId;
+                const hasNote = weeklyNotes[globalWeekId] && weeklyNotes[globalWeekId].trim().length > 0;
+                
+                const isLinksOpen = openLinksWeekId === globalWeekId;
+                const hasLinks = weeklyLinks[globalWeekId] && weeklyLinks[globalWeekId].length > 0;
+                
+                return (
                 <div key={week.id} className="bg-slate-900 rounded-xl md:rounded-2xl border border-slate-800 shadow-sm overflow-hidden transition-all hover:shadow-md hover:border-slate-700 duration-300">
                   {/* Week Header */}
-                  <div className="px-4 md:px-6 py-3 md:py-4 border-b border-slate-800 bg-slate-900/50">
-                    <div className="flex items-center gap-3 mb-1">
-                      <span className="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-[10px] md:text-xs font-bold px-2 py-0.5 md:px-2.5 md:py-1 rounded-md tracking-wide uppercase">
-                        {week.title}
-                      </span>
+                  <div className="px-4 md:px-6 py-3 md:py-4 border-b border-slate-800 bg-slate-900/50 flex justify-between items-start">
+                    <div>
+                      <div className="flex items-center gap-3 mb-1">
+                        <span className="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-[10px] md:text-xs font-bold px-2 py-0.5 md:px-2.5 md:py-1 rounded-md tracking-wide uppercase">
+                          {week.title}
+                        </span>
+                      </div>
+                      <h3 className="text-base md:text-lg font-semibold text-slate-200 mt-1.5 md:mt-2 leading-snug">{week.goals}</h3>
                     </div>
-                    <h3 className="text-base md:text-lg font-semibold text-slate-200 mt-1.5 md:mt-2 leading-snug">{week.goals}</h3>
+                    
+                    <div className="flex items-center gap-1.5 shrink-0 mt-0.5">
+                      {/* Kaynaklar İkonu */}
+                      <button 
+                        onClick={() => handleToggleLinks(globalWeekId)}
+                        className={`p-2 rounded-lg transition-all duration-200 \${
+                          isLinksOpen || hasLinks 
+                            ? 'text-emerald-400 bg-emerald-500/20 border border-emerald-500/30' 
+                            : 'text-slate-500 hover:text-emerald-400 hover:bg-slate-800'
+                        }`}
+                        title={hasLinks ? "Kaynakları Gör/Düzenle" : "Kaynak Ekle"}
+                      >
+                        <Bookmark size={18} />
+                      </button>
+
+                      {/* Not İkonu */}
+                      <button 
+                        onClick={() => handleToggleNote(globalWeekId)}
+                        className={`p-2 rounded-lg transition-all duration-200 \${
+                          isNoteOpen || hasNote 
+                            ? 'text-indigo-400 bg-indigo-500/20 border border-indigo-500/30' 
+                            : 'text-slate-500 hover:text-indigo-400 hover:bg-slate-800'
+                        }`}
+                        title={hasNote ? "Notları Gör/Düzenle" : "Haftalık Not Ekle"}
+                      >
+                        <StickyNote size={18} />
+                      </button>
+                    </div>
                   </div>
                   
                   {/* Todos List */}
@@ -234,8 +378,32 @@ function App() {
                       </div>
                     ))}
                   </div>
+
+                  {/* Haftalık Not Alanı (Expandable Editor) */}
+                  {isNoteOpen && (
+                    <div className="px-4 pb-4 md:px-6 md:pb-6 border-t border-slate-800 bg-slate-900/30">
+                      <WeeklyNoteEditor 
+                        weekId={globalWeekId} 
+                        initialNote={weeklyNotes[globalWeekId]}
+                        onSave={(id, content) => setWeeklyNotes(prev => ({ ...prev, [id]: content }))}
+                      />
+                    </div>
+                  )}
+
+                  {/* Faydalı Kaynaklar Alanı (Expandable List) */}
+                  {isLinksOpen && (
+                    <div className="px-4 pb-4 md:px-6 md:pb-6 border-t border-slate-800 bg-slate-900/30">
+                      <WeeklyLinksManager 
+                        weekId={globalWeekId} 
+                        links={weeklyLinks[globalWeekId]} 
+                        onAddLink={handleAddLink} 
+                        onRemoveLink={handleRemoveLink} 
+                      />
+                    </div>
+                  )}
+
                 </div>
-              ))}
+              )})}
             </div>
 
             {/* Milestone / Ay Sonu Çıktısı Kartı */}
@@ -279,9 +447,11 @@ function App() {
             )}
 
           </div>
+          ) : null}
         </div>
       </main>
 
+      <Pomodoro />
     </div>
   );
 }
