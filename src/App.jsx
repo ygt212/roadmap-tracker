@@ -7,6 +7,16 @@ import WeeklyLinksManager from './WeeklyLinksManager';
 import Dashboard from './Dashboard';
 import Portfolio from './Portfolio';
 
+function loadStoredJson(key, fallback) {
+  try {
+    const rawValue = localStorage.getItem(key);
+    return rawValue ? JSON.parse(rawValue) : fallback;
+  } catch (error) {
+    console.warn(`Failed to parse localStorage key "${key}". Falling back to default value.`, error);
+    return fallback;
+  }
+}
+
 function App() {
   const [activeMonthId, setActiveMonthId] = useState(1);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -14,32 +24,17 @@ function App() {
 
   // Haftalık Notlar State
   const [openNoteWeekId, setOpenNoteWeekId] = useState(null);
-  const [weeklyNotes, setWeeklyNotes] = useState(() => {
-    const savedNotes = localStorage.getItem('roadmapWeeklyNotes');
-    return savedNotes ? JSON.parse(savedNotes) : {};
-  });
+  const [weeklyNotes, setWeeklyNotes] = useState(() => loadStoredJson('roadmapWeeklyNotes', {}));
 
   // Haftalık Linkler State
   const [openLinksWeekId, setOpenLinksWeekId] = useState(null);
-  const [weeklyLinks, setWeeklyLinks] = useState(() => {
-    const savedLinks = localStorage.getItem('roadmapWeeklyLinks');
-    return savedLinks ? JSON.parse(savedLinks) : {};
-  });
+  const [weeklyLinks, setWeeklyLinks] = useState(() => loadStoredJson('roadmapWeeklyLinks', {}));
 
   // Portfolio State
-  const [portfolioData, setPortfolioData] = useState(() => {
-    const savedData = localStorage.getItem('roadmapPortfolio');
-    return savedData ? JSON.parse(savedData) : {};
-  });
+  const [portfolioData, setPortfolioData] = useState(() => loadStoredJson('roadmapPortfolio', {}));
 
   // Local Storage'dan veriyi çek, yoksa varsayılan veriyi kullan.
-  const [data, setData] = useState(() => {
-    const savedData = localStorage.getItem('roadmapData');
-    if (savedData) {
-      return JSON.parse(savedData);
-    }
-    return roadmapData;
-  });
+  const [data, setData] = useState(() => loadStoredJson('roadmapData', roadmapData));
 
   useEffect(() => {
     localStorage.setItem('roadmapData', JSON.stringify(data));
@@ -127,7 +122,15 @@ function App() {
     if (isConfirmed) {
       const resettedData = JSON.parse(JSON.stringify(roadmapData));
       setData(resettedData);
+      setWeeklyNotes({});
+      setWeeklyLinks({});
+      setPortfolioData({});
+      setOpenNoteWeekId(null);
+      setOpenLinksWeekId(null);
       localStorage.setItem('roadmapData', JSON.stringify(resettedData));
+      localStorage.removeItem('roadmapWeeklyNotes');
+      localStorage.removeItem('roadmapWeeklyLinks');
+      localStorage.removeItem('roadmapPortfolio');
       setActiveMonthId(1);
       if (window.innerWidth < 768) setIsSidebarOpen(false);
     }
@@ -306,8 +309,8 @@ function App() {
 
             {/* Weeks Container */}
             <div className="space-y-4 md:space-y-6">
-              {activeMonth.weeks.map((week, idx) => {
-                const globalWeekId = `m${activeMonth.id}-w${week.id}`;
+              {activeMonth.weeks.map((week) => {
+                const globalWeekId = `${activeMonth.id}-${week.id}`;
                 
                 const isNoteOpen = openNoteWeekId === globalWeekId;
                 const hasNote = weeklyNotes[globalWeekId] && weeklyNotes[globalWeekId].trim().length > 0;
@@ -360,22 +363,24 @@ function App() {
                   {/* Todos List */}
                   <div className="p-1 md:p-2 flex flex-col space-y-0.5">
                     {week.todos.map(todo => (
-                      <div 
+                      <button
+                        type="button"
                         key={todo.id} 
                         onClick={() => handleToggleTodo(activeMonth.id, week.id, todo.id)}
-                        className="flex items-start gap-3 md:gap-4 p-3 md:p-4 hover:bg-slate-800/50 rounded-lg md:rounded-xl transition-all duration-200 cursor-pointer group"
+                        className="flex w-full items-start gap-3 md:gap-4 p-3 md:p-4 text-left hover:bg-slate-800/50 rounded-lg md:rounded-xl transition-all duration-200 cursor-pointer group"
+                        aria-pressed={todo.completed}
                       >
-                        <button className="mt-[3px] md:mt-0.5 text-slate-500 group-hover:text-indigo-400 transition-colors shrink-0">
+                        <span className="mt-[3px] md:mt-0.5 text-slate-500 group-hover:text-indigo-400 transition-colors shrink-0">
                           {todo.completed ? (
                             <CheckCircle2 size={18} className="text-indigo-500 md:w-[20px] md:h-[20px]" />
                           ) : (
                             <Circle size={18} className="md:w-[20px] md:h-[20px]" />
                           )}
-                        </button>
+                        </span>
                         <span className={`${todo.completed ? 'text-slate-500 line-through' : 'text-slate-300'} text-[13px] md:text-sm font-medium leading-relaxed pt-px transition-all duration-200`}>
                           {todo.text}
                         </span>
-                      </div>
+                      </button>
                     ))}
                   </div>
 
