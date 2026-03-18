@@ -1,138 +1,128 @@
-<div align="center">
-  <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/map.svg" alt="Roadmap Tracker Logo" width="80" height="80">
+# Roadmap Tracker
 
-  # Data Science & Social Data Learning OS
-  
-  **6 Aylık Sosyal Veri Bilimi Yol Haritası ve Kişisel Öğrenme İşletim Sistemi**
+Sosyal Veri Bilimi odaklı 6 aylık bir öğrenme planını takip etmek için hazırlanmış, tamamen istemci tarafında çalışan bir roadmap uygulaması.
 
-  [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](#)
-  [![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](#)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](#)
-  [![LocalStorage](https://img.shields.io/badge/Storage-Local-emerald?style=for-the-badge)](#)
+Canlı demo: [roadmap-tracker-sd.vercel.app](https://roadmap-tracker-sd.vercel.app/)
 
-  [**Canlı Previëw (Demo)**](https://senindomainin.vercel.app) · [**Hata Bildir**](https://github.com/seninkullaniciadin/roadmap-tracker/issues) · [**Özellik İste**](https://github.com/seninkullaniciadin/roadmap-tracker/issues)
+GitHub repo: [ygt212/roadmap-tracker](https://github.com/ygt212/roadmap-tracker)
 
-</div>
+## Ne Yapıyor?
 
----
+Bu uygulama haftalık ve aylık öğrenme hedeflerini tek bir arayüzde takip etmeyi amaçlar. Todo ilerlemesi, haftalık notlar, kaynak bağlantıları, portföy linkleri ve Pomodoro ayarları tarayıcı içinde saklanır.
 
-> 🎉 **Sıradan bir "Yapılacaklar Listesi" değil; disiplinli çalışmayı, üretkenliği ve bilgiyi merkezine alan devasa bir öğrenme ekosistemi.**
+Öne çıkan özellikler:
 
-Bu proje, Veri Bilimi ve Sosyal Bilimler kesişiminde uzmanlaşmak isteyenler için hazırlanmış 6 aylık yoğun bir yol haritasını interaktif ve tatmin edici bir şekilde takip etmek amacıyla geliştirilmiştir. Yalnızca görevleri işaretlemez; Pomodoro tekniği ile sizi odaklar, öğrendiklerinizi Markdown defterinize kaydeder ve hedeflerinizi şık bir Dashboard ile özetler.
+- 6 aylık yapılandırılmış sosyal veri bilimi roadmap’i
+- Haftalık todo takibi
+- Markdown destekli haftalık not alanı
+- Haftalık kaynak bağlantısı yönetimi
+- Portföy ve GitHub proje vitrini
+- Yerleşik Pomodoro sayacı
+- İstatistik ve ilerleme panosu
+- `localStorage` üstünde çalışan kalıcı veri yapısı
+- Eski kayıtlar için state migration desteği
 
----
+## Teknoloji Yığını
 
-## 📸 Ekran Görüntüleri
+- React 19
+- Vite
+- Tailwind CSS
+- Lucide React
+- Recharts
+- React Markdown
+- Node.js test runner (`node:test`)
 
-<div align="center">
-  <!-- TODO: Uygulama tamamlandığında ekran görüntülerini buraya ekle -->
-  <img src="https://via.placeholder.com/800x450.png?text=Dashboard+%26+Main+UI" alt="Main UI" width="800">
-  <br>
-  <em>(Projenin Genel Görünümü ve Karanlık Tema)</em>
-</div>
+## Yerel Kurulum
 
----
+Gereksinimler:
 
-## 🚀 Öne Çıkan Özellikler (Features)
+- Node.js
+- npm
+- Git
 
-Öğrenme sürecinizi kesintisiz kılmak için en son teknoloji ve modern UX disiplinleriyle donatıldı:
+Kurulum:
 
-*   📱 **Modern & Responsive UI**: Mobil cihazlar da dahil tüm ekran boyutlarında kusursuz (%100 Responsive) görünüm.
-*   🌙 **Premium Karanlık Tema**: Göz yormayan, odağı koruyan Gece Mavisi (Slate/Indigo) modern arayüz ve pürüzsüz animasyonlar.
-*   💾 **Local Storage Senkronizasyonu**: Verileriniz sunucuya veya buluta ihtiyaç duymadan doğrudan tarayıcınızda (Local Storage) kaydedilir. Gizlilik odaklıdır ve anında tepki verir.
-*   🍅 **Entegre Pomodoro Sayacı**:
-    *   Sayfadan ayrılmadan, ekranın köşesinde her an erişilebilir "Focus & Break" aracı.
-    *   Kişiselleştirilebilir zaman tanımlaması (Örn: 50dk Çalış, 10dk Mola).
-    *   Süre bittiğinde *Web Audio API* destekli, gecikmesiz döngüsel Alarm sistemi.
-*   📝 **Haftalık Markdown Not Defteri**:
-    *   *react-markdown* destekli zengin metin editörü.
-    *   Öğrendiğiniz güncel kodları, istatistik formüllerini haftaların altına bir "Journal" mantığıyla iliştirip arşivleyin.
-    *   Önizleme (Preview) ve Düzenleme (Edit) sekmeleriyle akıcı geçiş.
-*   🔗 **Kaynak (Bookmark) Yöneticisi**: Her hafta için incelediğiniz YouTube kurslarını, Medium makalelerini veya resmi dokümantasyonları anında ilgili haftaya bağlayın.
-*   📊 **Kişisel İstatistik Panosu (Dashboard)**:
-    *   *Recharts* tabanlı aylık ilerleme grafikleri.
-    *   Toplam tamamlanan görev, toplam yazılan not ve kaydedilen kaynak sayısı metrikleri.
-*   📁 **Bütünleşik GitHub Portföy Vitrini**: 
-    *   Yolculuğunuz boyunca ürettiğiniz projelerin Github Linklerini saklayın.
-    *   Sınıflandırma, EDA ve devasa **Capstone Projelerinizi** Premium tasarımlı kartlarla tek bir vitrinde toplayın.
+```bash
+git clone https://github.com/ygt212/roadmap-tracker.git
+cd roadmap-tracker
+npm install
+```
 
----
+Geliştirme sunucusu:
 
-## 🛠️ Teknoloji Yığını (Tech Stack)
+```bash
+npm run dev
+```
 
-Bu proje performans, sadelik ve estetik dikkate alınarak geliştirilmiştir.
+Uygulama varsayılan olarak genelde `http://localhost:5173` adresinde açılır.
 
-| Teknoloji | Açıklama |
-| :--- | :--- |
-| **[React 18](https://react.dev/)** | Bileşen tabanlı modüler mimari ve state yönetimi (useState, useEffect, useMemo). |
-| **[Vite](https://vitejs.dev/)** | Yeni nesil, inanılmaz hızlı frontend geliştirme derleyicisi. |
-| **[Tailwind CSS](https://tailwindcss.com/)** | Yardımcı sınıf (utility-first) tabanlı mükemmel CSS iskeleti (Dark Mode, Animasyonlar). |
-| **[Lucide React](https://lucide.dev/)** | Oldukça net, özelleştirilebilir vektörel ikon seti. |
-| **[Recharts](https://recharts.org/)** | SVG tabanlı, oldukça esnek, deklaratif veri görselleştirme/grafik kütüphanesi. |
-| **[React Markdown](https://github.com/remarkjs/react-markdown)** | MD uzantılı formatları doğrudan HTML/Bileşen yapısına güvenle çeviren dönüştürücü. |
+## Komutlar
 
----
+```bash
+npm run dev
+npm test
+npm run build
+```
 
-## ⚙️ Yerel Kurulum (Local Setup)
+Komut açıklamaları:
 
-Projeyi kendi bilgisayarınızda (localhost) çalıştırmak veya geliştirmek isterseniz aşağıdaki adımları sırasıyla uygulayın.
+- `npm run dev`: geliştirme sunucusunu başlatır
+- `npm test`: state ve migration testlerini çalıştırır
+- `npm run build`: production build oluşturur
 
-### Gereksinimler
-*   Node.js (v16.14.0 veya üzeri)
-*   npm (veya pnpm/yarn)
-*   Git
+## Veri Saklama
 
-### Kurulum Adımları
+Uygulama backend kullanmaz. Kullanıcı verileri tarayıcıdaki `localStorage` içinde tutulur.
 
-1.  **Repoyu klonlayın:**
-    ```bash
-    git clone https://github.com/KULLANICI_ADIN/roadmap-tracker.git
-    ```
+Saklanan başlıca alanlar:
 
-2.  **Proje dizinine geçiş yapın:**
-    ```bash
-    cd roadmap-tracker
-    ```
+- roadmap todo ilerlemesi
+- haftalık notlar
+- haftalık kaynaklar
+- portföy bağlantıları
+- Pomodoro süre ayarları
 
-3.  **Paketleri (Dependencies) yükleyin:**
-    ```bash
-    npm install
-    # veya yarn install
-    ```
+State katmanında sürüm kontrollü migration mantığı bulunur. Böylece veri yapısı değiştiğinde eski kayıtlar mümkün olduğunca korunarak yeni yapıya taşınır.
 
-4.  **Uygulamayı çalıştırın:**
-    ```bash
-    npm run dev
-    ```
+## Proje Yapısı
 
-5.  **Tarayıcıyı açın:**
-    Terminalde dönen adresi kopyalayarak tarayıcınıza yapıştırın (Genellikle `http://localhost:5173/`).
+Önemli dosya ve klasörler:
 
----
+- `src/App.jsx`
+- `src/data.js`
+- `src/hooks/useRoadmapState.js`
+- `src/utils/roadmapState.js`
+- `src/utils/roadmapState.test.js`
+- `src/Pomodoro.jsx`
+- `src/Dashboard.jsx`
+- `src/Portfolio.jsx`
 
-## 🗺️ Gelecek Vizyonu (Roadmap & To-Do)
+## Yol Haritası
 
-Proje bir "işletim sistemine" dönüşme yolunda ilerlemektedir. İlerleyen güncellemelerde hedeflenen vizyonlar:
+İleride eklenebilecek geliştirmeler:
 
-- [ ] **Data Export / Import**: İlerlemelerin JSON formatında indirilip yedeklenebilmesi veya başka cihaza aktarılabilmesi *(İlk öncelik)*.
-- [ ] **Supabase / Firebase Entegrasyonu**: Verilerin Local Storage dışına taşıp çapraz platform bulut sistemine aktarılması (Opsiyonel Authentication entegrasyonu).
-- [ ] **Çoklu Yol Haritası (Switcher)**: Sistemin içerisine "Backend Developer Roadmap" veya "Data Engineer Roadmap" paketlerinin bir json olarak atılıp, sistemden dropdown ile harita değiştirilmesi.
-- [ ] **Gelişmiş Puanlama Sistemi**: Tamamlanan projelere göre rozet kazanma gibi gamification/oyunlaştırma özellikleri.
+- veri dışa aktarma ve içe aktarma
+- çoklu roadmap desteği
+- isteğe bağlı bulut senkronizasyonu
+- oyunlaştırma ve rozet sistemi
 
----
+## Katkıda Bulunma
 
-## 🤝 Katkıda Bulunma (Contributing)
+Katkı vermek istersen:
 
-Bu bir açık kaynaklı projedir. Her türlü Issue açma (hata bildirimi), Pull Request (yeni özellik başvurusu) ve geri bildirimi heyecanla bekliyoruz!
+```bash
+git checkout -b feature/yeni-ozellik
+```
 
-1. Bu projeyi fork'layın (`Fork`)
-2. Yeni bir feature branch'i yaratın (`git checkout -b feature/MuthisÖzellik`)
-3. Değişikliklerinizi commit yapın (`git commit -m 'feat: Müthiş özellik eklendi'`)
-4. Branch'inize Push yapın (`git push origin feature/MuthisÖzellik`)
-5. **Pull Request** başlatın!
+Değişikliklerden sonra şu iki komutu çalıştırmak iyi bir minimum kontroldür:
 
----
+```bash
+npm test
+npm run build
+```
 
-<div align="center">
-  <p>Sevgi, kahve ☕ ve <a href="https://react.dev/" target="_blank">React</a> ile kodlanmıştır.</p>
-</div>
+Sonrasında commit, push ve pull request açabilirsin.
+
+## Not
+
+Bu proje şu anda istemci tarafı odaklı bir kişisel takip aracı olarak tasarlandı. Tarayıcı verisi temizlenirse ilerleme bilgileri de silinir.
